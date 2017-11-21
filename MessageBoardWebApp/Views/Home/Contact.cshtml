@@ -1,17 +1,64 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="span6">
+    <address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+</div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="span6">
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>
+</div>
+
+<div class=" row">
+    <div  class="span8">
+        <div class="padd">
+            <div class="co-form">
+                <form class="form-horizontal" method="post">
+                    <fieldset class="control-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" class="input-medium" id="name" name="name" data-val="true" data-val-required="*"/>
+                            <span class="field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
+                        </div>
+                        <label class="control-label" for="email">Email</label>
+                        <div class="controls">
+                            <input type="text" class="input-medium" id="email" name="email" data-val="true" data-val-required="*" />
+                            <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                        </div>
+                        <label class="control-label" for="website">Website</label>
+                        <div class="controls">
+                            <input type="text" class="input-medium" id="website" name="website" data-val="true" data-val-required="*"/>
+                            <span class="field-validation-valid" data-valmsg-for="website" data-valmsg-replace="true"></span>
+                        </div>
+                        <label class="control-label" for="comment">Message</label>
+                        <div class="controls">
+                            <textarea class="input-medium" id="comment" rows="3" name="comment" data-val="true" data-val-required="*"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="comment" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Send</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
