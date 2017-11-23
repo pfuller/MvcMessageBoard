@@ -1,4 +1,8 @@
-﻿body {
+﻿
+@baseMessageColor: #ccf;
+@baseBorderColor: #888;
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -24,14 +28,35 @@ textarea {
 }
 
 .message {
-    border: 1px solid #888888;
+    background: none repeat scroll 0 0 lighten(@baseMessageColor, 5%);
+    border: 1px solid @baseBorderColor;
     margin-bottom: 5px;
     padding: 5px;
     border-radius: 5px 5px 5px 5px;
-    background: none repeat scroll 0 0 #FFFFFF;
     margin-left: 0;
     margin-right: 20px;
+
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 2px 2px 2px 4px @baseMessageColor;
+    }
+
+    .reply {
+        background: none repeat scroll 0 0 lighten(@baseMessageColor, 7%);
+        border-top: 1px solid lighten(@baseBorderColor, 5%);
+        margin-top: 5px;
+        margin-left: 15px;
+
+        .created {
+            font-size: 9px;
+            margin-left: 10px;
+            text-shadow: 2px 2px 3px #888;
+        }
+    }
 }
+
+
 
 .row {
      margin-left: -20px;
