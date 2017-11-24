@@ -70,7 +70,7 @@ namespace MessageBoardWebApp.Data
                     }
                 };
 
-                context.Topics.Add(topic1);
+                context.Topics.Add(topic2);
 
                 try
                 {

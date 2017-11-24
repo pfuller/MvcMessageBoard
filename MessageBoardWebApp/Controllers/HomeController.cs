@@ -27,6 +27,12 @@ namespace MessageBoardWebApp.Controllers
                 .Take(25)
                 .ToList();
 
+
+            foreach(var topic in topics)
+            {
+                topic.Replies = _repo.GetRepliesByTopic(topic.Id).ToList();
+            }
+
             return View(topics);
         }
 
