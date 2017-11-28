@@ -17,12 +17,33 @@ namespace MessageBoardWebApp.Controllers
             _repo = repo;
         }
 
+        // text/xml
+        // application/json
+
+
         public IEnumerable<Topic> Get()
         {
             return _repo.GetTopics()
                         .OrderByDescending(t => t.Created)
                         .Take(25)
                         .ToList();
+        }
+
+        public HttpResponseMessage Post([FromBody] Topic newTopic)
+        {
+            if(newTopic.Created == default(DateTime))
+            {
+                newTopic.Created = DateTime.UtcNow;
+            }
+
+            if(_repo.AddTopic(newTopic) && _repo.Save())
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, newTopic);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
         }
     }
 }

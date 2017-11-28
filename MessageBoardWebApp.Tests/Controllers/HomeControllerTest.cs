@@ -7,17 +7,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MessageBoardWebApp;
 using MessageBoardWebApp.Controllers;
 using MessageBoardWebApp.Services;
+using MessageBoardWebApp.Data;
 
 namespace MessageBoardWebApp.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
+        private HomeController createHomeController()
+        {
+            return new HomeController(new MockMailService(),
+                new MessageBoardRepository(new MessageBoardContext()));
+        }
+
         [TestMethod]
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController(new MockMailService());
+            HomeController controller = createHomeController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -30,7 +37,7 @@ namespace MessageBoardWebApp.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController(new MockMailService());
+            HomeController controller = createHomeController();
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -43,7 +50,7 @@ namespace MessageBoardWebApp.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController(new MockMailService());
+            HomeController controller = createHomeController();
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;

@@ -23,5 +23,30 @@ namespace MessageBoardWebApp.Data
         {
             return _ctx.Replies.Where(t => t.TopicId == topicId);
         }
+
+        bool IMessageBoardRepository.Save()
+        {
+            try
+            {
+                return _ctx.SaveChanges() > 0;
+            } catch (Exception ex)
+            {
+                //TODO log error
+                return false;
+            }
+        }
+
+        bool IMessageBoardRepository.AddTopic(Topic newTopic)
+        {
+            try
+            {
+                _ctx.Topics.Add(newTopic);
+                return true; 
+            } catch (Exception e)
+            {
+                //TODO log error
+                return false;
+            }
+        }
     }
 }
