@@ -48,5 +48,10 @@ namespace MessageBoardWebApp.Data
                 return false;
             }
         }
+
+        IQueryable<Topic> IMessageBoardRepository.GetTopicsIncludingReplies()
+        {
+            return _ctx.Topics.Include("Replies");
+        }
     }
 }
