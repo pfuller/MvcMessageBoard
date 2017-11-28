@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using MessageBoardWebApp.Data;
+using WebApiContrib.IoC.Ninject;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MessageBoardWebApp.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MessageBoardWebApp.App_Start.NinjectWebCommon), "Stop")]
@@ -14,6 +15,7 @@ namespace MessageBoardWebApp.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Services;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -50,6 +52,10 @@ namespace MessageBoardWebApp.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver =
+                    new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch
