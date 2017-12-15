@@ -53,5 +53,23 @@ namespace MessageBoardWebApp.Data
         {
             return _ctx.Topics.Include("Replies");
         }
+
+        bool IMessageBoardRepository.AddReply(Reply newReply)
+        {
+            try
+            {
+                _ctx.Replies.Add(newReply);
+                return true;
+            } catch (Exception e)
+            {
+                // TODO log error
+                return false;
+            }
+        }
+
+        IQueryable<Topic> IMessageBoardRepository.GetTopicsById(int topicId)
+        {
+            return _ctx.Topics.Where(t => t.Id == topicId);
+        }
     }
 }

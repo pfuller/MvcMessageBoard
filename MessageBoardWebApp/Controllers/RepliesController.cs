@@ -21,5 +21,24 @@ namespace MessageBoardWebApp.Controllers
         {
             return _repo.GetRepliesByTopic(topicId);
         }
+
+        public HttpResponseMessage Post(int topicId, [FromBody] Reply newReply)
+        {
+            if (newReply.Created == default(DateTime))
+            {
+                newReply.Created = DateTime.UtcNow;
+            }
+
+            newReply.TopicId = topicId;
+
+            if (_repo.AddReply(newReply) && _repo.Save())
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, newReply);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
     }
 }
